@@ -5,20 +5,21 @@ __data_columns = None
 __model = None
 
 def get_location_names():
-    pass
+    return __locations
 
 def load_saved_artifacts():
     print("Loading saved artifacts")
     global __data_columns
     global __locations
     
-    with open("./artifacts.columns.json", "r") as f:
+    with open("./artifacts/columns.json", "r") as f:
         __data_columns = json.load(f)['data_columns']
-        __locations = __data_columns['locations']
+        __locations = __data_columns[3:]
         
-    with open("./artifacts/home_prices_model.pickle", "r") as f:
+    with open("./artifacts/home_prices_model.pickle", "rb") as f:
         __model = pickle.load(f)
     print("loading saved artifact..don")        
     
 if __name__ == '__main__':
+    load_saved_artifacts()
     print(get_location_names())    
