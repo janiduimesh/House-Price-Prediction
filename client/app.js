@@ -25,11 +25,9 @@
     var bathrooms = getBathValue();
     var location = document.getElementById("uiLocations");
     var estPrice = document.getElementById("uiEstimatedPrice");
-    console.log("data got it");
   
     var url = "http://127.0.0.1:5000/predict_home_price"; //Use this if you are NOT using nginx which is first 7 tutorials
     // var url = "/api/predict_home_price"; // Use this if  you are using nginx. i.e tutorial 8 and onwards
-    console.log("called");
   
     $.post(url, {
         total_sqft: parseFloat(sqft.value),
