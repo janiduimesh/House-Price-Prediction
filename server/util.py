@@ -40,5 +40,5 @@ def load_saved_artifacts():
     
 if __name__ == '__main__':
     load_saved_artifacts()
-    # print(get_location_names())    
-    print(get_estimated_price('kalhalli',1000,2,2))
+    print(get_location_names())    
+    # print(get_estimated_price('kalhalli',1000,2,2))

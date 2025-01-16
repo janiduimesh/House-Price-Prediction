@@ -4,15 +4,20 @@ app = Flask(__name__)
 
 @app.route('/get_location_names', methods=['GET'])
 def get_location_names():
-    response = jsonify({
-        'locations':util.get_location_names()
-    })
-    
-    response.headers.add('Access-Control-Allow-Origin','*')
-    
-    return response
+    try:
+        locations = util.get_location_names()  
+        print("Locations fetched from util:", locations)  
+        response = jsonify({'locations': locations})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+    except Exception as e:
+        print("Error in get_location_names route:", e)  
+        response = jsonify({'locations': [], 'error': str(e)})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
 
-@app.route('/predict_home_price',methods=['POST'])
+
+@app.route('/predict_home_price',methods=['POST','GET'])
 def predict_home_price():
      total_sqft = float(request.form['total_sqft'])
      location = request.form['location']
